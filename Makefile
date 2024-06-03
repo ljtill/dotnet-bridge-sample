@@ -2,7 +2,7 @@
 # Variables
 #
 
-IMAGE = "service:v1.0"
+SERVICES := Basket Catalog Identity Order Payment Shipping
 
 #
 # Targets
@@ -10,46 +10,50 @@ IMAGE = "service:v1.0"
 
 .PHONY: build
 build:
-	@echo "Building image..."
-	@docker build -t $(IMAGE) -f ./src/Service/Dockerfile ./src/Service
+	@echo "Building images..."
+	@docker build -t contoso-web:v1.0 -f ./Dockerfile --build-arg DLL_NAME=Contoso.Web.dll ./src/Contoso.Web
+	@for service in $(SERVICES); do \
+		docker build -t contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0 -f ./Dockerfile --build-arg DLL_NAME=Contoso.$$service.Api.dll ./src/Contoso.$$service.Api; \
+	done
 
-.PHONY: remove
-remove:
-	@echo "Removing image..."
-	@docker rmi $(IMAGE)
+.PHONY: clean
+clean:
+	@echo "Cleaning images..."
+	@docker rmi contoso-web:v1.0
+	@for service in $(SERVICES); do \
+		docker rmi contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0; \
+	done
 
 .PHONY: upload
 upload:
 	@echo "Uploading image..."
-	@kind load docker-image $(IMAGE)
-
-.PHONY: run
-run:
-	@echo "Running container..."
-	@docker run -d -p 5180:5180 $(IMAGE)
+	@kind load docker-image contoso-web:v1.0
+	@for service in $(SERVICES); do \
+		kind load docker-image contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0; \
+	done
 
 .PHONY: apply
 apply:
 	@echo "Applying manifests..."
-	@kubectl apply -f ./eng
+	@kubectl apply -f ./eng/namespace.yaml
+	@kubectl apply -R -f ./eng
 
 .PHONY: delete
 delete:
 	@echo "Deleting manifests..."
-	@kubectl delete -f ./eng
+	@kubectl delete -f ./eng/namespace.yaml
 
 .PHONY: list
 list:
-	@echo "Listing resources..."
-	@kubectl get all
+	@echo "Listing namespace resources..."
+	@watch -n 1 'kubectl get all -n contoso'
 
-.PHONY: logs
-logs:
-	@echo "Retrieving logs..."
-	@kubectl logs  $(shell kubectl get pods -l app=service -o jsonpath="{.items[0].metadata.name}") service
+.PHONY: list-all
+list-all:
+	@echo "List all resources..."
+	@watch -n 1 'kubectl get all -A'
 
-
-.PHONY: export
-export:
+.PHONY: config
+config:
 	@echo "Exporting context..."
 	@kind export kubeconfig
