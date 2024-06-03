@@ -46,7 +46,7 @@ spec:
             - name: DOTNETMONITOR_Metrics__Endpoints
               value: http://+:52325
             # - name: DotnetMonitor_Egress__AzureBlobStorage__monitorBlob__accountUri
-            # value: "https://msaint.blob.core.windows.net"
+            # value: ""
             # - name: DotnetMonitor_Egress__AzureBlobStorage__monitorBlob__containerName
             # value: "dotnet-monitor"
             # - name: DotnetMonitor_Egress__AzureBlobStorage__monitorBlob__blobPrefix
