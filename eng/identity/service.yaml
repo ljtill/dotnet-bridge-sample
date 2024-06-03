@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contoso-identity
+  namespace: contoso
+spec:
+  selector:
+    app: contoso-identity
+  ports:
+    - protocol: TCP
+      port: 5185
+      targetPort: 5185

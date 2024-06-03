@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contoso-catalog
+  namespace: contoso
+spec:
+  selector:
+    app: contoso-catalog
+  ports:
+    - protocol: TCP
+      port: 5140
+      targetPort: 5140

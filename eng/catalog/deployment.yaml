@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dotnet-service
-  namespace: default
+  name: contoso-catalog
+  namespace: contoso
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dotnet-service
+      app: contoso-catalog
   template:
     metadata:
       labels:
-        app: dotnet-service
+        app: contoso-catalog
     spec:
       restartPolicy: Always
       securityContext:
         fsGroup: 1654
       containers:
         - name: service
-          image: service:v1.0
+          image: contoso-catalog:v1.0
           env:
             - name: ASPNETCORE_URLS
-              value: http://+:5180
+              value: http://+:5140
             - name: DOTNET_DiagnosticPorts
               value: /diag/dotnet-monitor.sock
           volumeMounts:
@@ -59,7 +59,7 @@ spec:
             - mountPath: /diag
               name: diagvol
             - mountPath: /etc/dotnet-monitor
-              name: dotnet-monitor
+              name: contoso-monitor
           resources:
             requests:
               cpu: 50m
@@ -70,10 +70,10 @@ spec:
       volumes:
         - name: diagvol
           emptyDir: {}
-        - name: dotnet-monitor
+        - name: contoso-monitor
           projected:
             defaultMode: 400
             sources:
               - configMap:
-                  name: dotnet-monitor
+                  name: contoso-monitor
                   optional: false

@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: dotnet-monitor
-    namespace: default
+    name: contoso-monitor
+    namespace: contoso
 data:
     settings.json: |
         {
