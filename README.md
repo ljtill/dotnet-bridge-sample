@@ -1,7 +1,7 @@
-# Diagnostics
+# Contoso
 
-```
-kind delete cluster && kind create cluster && make build && make upload && make apply && make list
+```bash
+kind create cluster && make build && make upload && make apply && make list
 ```
 
 ## Tools
