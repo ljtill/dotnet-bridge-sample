@@ -1,33 +1,55 @@
+#
+# Variables
+#
 
-SRC_DIR = ./src/Service
-ENG_DIR = ./eng/platform
-IMAGE = service:v1.0
+IMAGE = "service:v1.0"
 
+#
+# Targets
+#
+
+.PHONY: build
 build:
 	@echo "Building image..."
-	@docker build -t $(IMAGE) -f $(SRC_DIR)/Dockerfile $(SRC_DIR)
+	@docker build -t $(IMAGE) -f ./src/Service/Dockerfile ./src/Service
 
+.PHONY: remove
 remove:
 	@echo "Removing image..."
-	docker rmi $(IMAGE)
+	@docker rmi $(IMAGE)
 
+.PHONY: upload
 upload:
 	@echo "Uploading image..."
-	kind load docker-image $(IMAGE)
+	@kind load docker-image $(IMAGE)
 
+.PHONY: run
 run:
 	@echo "Running container..."
-	docker run -d -p 5180:5180 $(IMAGE)
+	@docker run -d -p 5180:5180 $(IMAGE)
 
-deploy:
-	@echo "Deploying manifest..."
-	kubectl create configmap dotnet-monitor-triggers --from-file=$(ENG_DIR)/settings.json
-	kubectl apply -f $(ENG_DIR)/deployment.yaml
+.PHONY: apply
+apply:
+	@echo "Applying manifests..."
+	@kubectl apply -f ./eng
 
+.PHONY: delete
 delete:
-	@echo "Deleting manifest..."
-	kubectl delete -f $(ENG_DIR)/deployment.yaml
+	@echo "Deleting manifests..."
+	@kubectl delete -f ./eng
 
+.PHONY: list
+list:
+	@echo "Listing resources..."
+	@kubectl get all
+
+.PHONY: logs
 logs:
 	@echo "Retrieving logs..."
-	kubectl logs  $(shell kubectl get pods -l app=service -o jsonpath="{.items[0].metadata.name}") service
+	@kubectl logs  $(shell kubectl get pods -l app=service -o jsonpath="{.items[0].metadata.name}") service
+
+
+.PHONY: export
+export:
+	@echo "Exporting context..."
+	@kind export kubeconfig
