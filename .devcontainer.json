@@ -3,12 +3,22 @@
     "features": {
         "ghcr.io/devcontainers/features/azure-cli:latest": {},
         "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
-        "ghcr.io/devcontainers/features/dotnet:latest": {},
+        "ghcr.io/devcontainers/features/dotnet:latest": {
+            "version": "8.0",
+            "additionalVersions": "7.0"
+        },
         "ghcr.io/ljtill/features/kind:latest": {},
         "ghcr.io/ljtill/features/kubectl:latest": {}
     },
     "runArgs": [
         "--network=host"
     ],
-    "postCreateCommand": "bash install.sh"
+    "postCreateCommand": "bash install.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mindaro.mindaro"
+            ]
+        }
+    }
 }
