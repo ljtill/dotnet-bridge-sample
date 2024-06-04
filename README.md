@@ -21,14 +21,19 @@ make apply
 
 # Set current context to specific namespace
 make set
+```
 
+```bash
 # List and watch Kubernetes resources
 make list
+
+# Display all container logs
+make logs
 ```
 
 Follow the [Use Bridge to Kubernetes (VS Code)](https://learn.microsoft.com/en-us/visualstudio/bridge/bridge-to-kubernetes-vs-code) tutorial.
 
-> Within `tasks.json` set the variable `useKubernetesServiceEnvironmentVariables` to true
+> Set `tasks.json` variable `useKubernetesServiceEnvironmentVariables` to true
 
 ## Tools
 
