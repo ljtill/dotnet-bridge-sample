@@ -1,7 +1,6 @@
 {
     "image": "mcr.microsoft.com/devcontainers/base:jammy",
     "features": {
-        "ghcr.io/devcontainers/features/azure-cli:latest": {},
         "ghcr.io/devcontainers/features/docker-in-docker": {},
         "ghcr.io/devcontainers/features/dotnet:latest": {
             "version": "8.0",
@@ -13,7 +12,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "mindaro.mindaro"
+                "mindaro.mindaro",
+                "ms-dotnettools.csdevkit"
             ]
         }
     }
