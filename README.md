@@ -1,26 +1,38 @@
-# Contoso
+# Bridge to Kubernetes Sample
+
+This repository provides the sample artifacts to get started with debugging and testing with Bridge for Kubernetes.
+
+## Getting Started
 
 ```bash
-kind create cluster && make build && make upload && make apply && make list
+# Provision the local cluster
+kind create cluster
+
+# Build Docker images of the .NET application
+make build
+
+# Upload Docker images to Kubernetes nodes
+make upload
+
+# Apply Kustomize overlays and apply Kubernetes manifests
+make apply
+
+# List namespaced Kubernetes resources and watch
+make list
 ```
+
+Follow the [Use Bridge to Kubernetes (VS Code)](https://learn.microsoft.com/en-us/visualstudio/bridge/bridge-to-kubernetes-vs-code) guide to get started.
 
 ## Tools
 
 - [Bridge to Kubernetes](https://learn.microsoft.com/en-us/visualstudio/bridge/)
-- [ProcDump](https://github.com/Sysinternals/ProcDump-for-Linux/)
 
-## Scenarios
+## Debugging
 
-1. Review repository structure
-2. Bridge to Kubernetes
-  1. Create cluster - `kind create cluster`
-  2. Check resources - `make watch`
-  3. Build image - `make build`
-  4. Upload image - `make upload`
-  5. Apply manifests - `make apply`
-  6. Check resources - `make list`
-  7. Follow logs - `make logs`
-  7. Configure Bridge - Prompt
-3. .NET Monitor
-  1. Review Kubernetes Manifests
-  2. Showcase the endpoints
+```bash
+# HTTP
+curl -k -L http://localhost:5062/basket
+
+# HTTPS
+curl -k https://localhost:7295/basket
+```
