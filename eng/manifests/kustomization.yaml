@@ -5,11 +5,7 @@ kind: Kustomization
 resources:
   - ./overlays/basket
   - ./overlays/catalog
-  - ./overlays/identity
   - ./overlays/order
-  - ./overlays/payment
-  - ./overlays/shipping
   - ./overlays/web
 
 namespace: sample
-namePrefix: sample-

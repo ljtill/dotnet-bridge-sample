@@ -6,11 +6,11 @@ resources:
   - ../../base
 
 commonLabels:
-  app: sample-basket
+  app: basket
 
 images:
   - name: template
-    newName: sample-basket
+    newName: sample/basket
     newTag: v1
 
 patches:

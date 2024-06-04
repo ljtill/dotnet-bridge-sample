@@ -1,6 +1,0 @@
-@Sample.Order.Api_HostAddress = http://localhost:5156
-
-GET {{Sample.Order.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
