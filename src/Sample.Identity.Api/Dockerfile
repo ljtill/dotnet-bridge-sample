@@ -23,4 +23,4 @@ WORKDIR /App
 COPY --from=build-env /App/out .
 
 # Set the entry point for the container
-ENTRYPOINT ["dotnet", "Contoso.Payment.Api.dll"]
+ENTRYPOINT ["dotnet", "Sample.Identity.Api.dll"]

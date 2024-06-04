@@ -1,4 +1,4 @@
-using Contoso.Web.Components;
+using Sample.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -23,4 +23,4 @@ WORKDIR /App
 COPY --from=build-env /App/out .
 
 # Set the entry point for the container
-ENTRYPOINT ["dotnet", "Contoso.Shipping.Api.dll"]
+ENTRYPOINT ["dotnet", "Sample.Web.dll"]

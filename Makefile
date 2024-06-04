@@ -11,42 +11,42 @@ SERVICES := Basket Catalog Identity Order Payment Shipping
 .PHONY: build
 build:
 	@echo "Building images..."
-	@docker build -t contoso-web:v1.0 -f ./Dockerfile --build-arg DLL_NAME=Contoso.Web.dll ./src/Contoso.Web
+	@docker build -t sample-web:v1 -f ./Dockerfile --build-arg DLL_NAME=Sample.Web.dll ./src/Sample.Web
 	@for service in $(SERVICES); do \
-		docker build -t contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0 -f ./Dockerfile --build-arg DLL_NAME=Contoso.$$service.Api.dll ./src/Contoso.$$service.Api; \
+		docker build -t sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1 -f ./Dockerfile --build-arg DLL_NAME=Sample.$$service.Api.dll ./src/Sample.$$service.Api; \
 	done
 
 .PHONY: clean
 clean:
 	@echo "Cleaning images..."
-	@docker rmi contoso-web:v1.0
+	@docker rmi sample-web:v1
 	@for service in $(SERVICES); do \
-		docker rmi contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0; \
+		docker rmi sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
 	done
 
 .PHONY: upload
 upload:
 	@echo "Uploading image..."
-	@kind load docker-image contoso-web:v1.0
+	@kind load docker-image sample-web:v1
 	@for service in $(SERVICES); do \
-		kind load docker-image contoso-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1.0; \
+		kind load docker-image sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
 	done
 
 .PHONY: apply
 apply:
 	@echo "Applying manifests..."
-	@kubectl apply -f ./eng/namespace.yaml
-	@kubectl apply -R -f ./eng
+	@kubectl create namespace sample --dry-run=client -o yaml | kubectl apply -f -
+	@kubectl apply -k ./eng
 
 .PHONY: delete
 delete:
 	@echo "Deleting manifests..."
-	@kubectl delete -f ./eng/namespace.yaml
+	@kubectl delete ns sample
 
 .PHONY: list
 list:
 	@echo "Listing namespace resources..."
-	@watch -n 1 'kubectl get all -n contoso'
+	@watch -n 1 'kubectl get all -n sample'
 
 .PHONY: list-all
 list-all:
