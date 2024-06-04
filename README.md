@@ -2,7 +2,7 @@
 
 This repository provides a quick-start sample application that combines an ASP.NET Core Web API backend with a Blazor Web App frontend, designed for testing with Bridge for Kubernetes. Optimized for Dev Containers, it includes a set of Makefile targets to simplify the setup process. With these targets, you can easily set up a local Kubernetes cluster, build and upload container images, and deploy the application, making it straightforward to get started with your testing and debugging.
 
-![Architecture](./eng/images/Architecture.png)
+![Architecture](./eng/images/architecture.png)
 
 ## Getting Started
 
