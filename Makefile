@@ -51,10 +51,13 @@ list:
 	@echo "Listing namespace resources..."
 	@watch -n 1 'kubectl get all -n $(NAMESPACE)'
 
-.PHONY: list-all
-list-all:
-	@echo "List all resources..."
-	@watch -n 1 'kubectl get all -A'
+.PHONY: logs
+logs:
+	@echo "Retrieving logs..."
+	@for service in $(SERVICES); do \
+		echo "\nDeployment: $$service"; \
+		kubectl logs -l app=$$(echo $$service | tr '[:upper:]' '[:lower:]') -n $(NAMESPACE); \
+	done
 
 .PHONY: config
 config:
