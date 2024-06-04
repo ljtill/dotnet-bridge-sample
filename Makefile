@@ -2,7 +2,8 @@
 # Variables
 #
 
-SERVICES := Basket Catalog Identity Order Payment Shipping
+SERVICES := Basket Catalog Order Web
+NAMESPACE := sample
 
 #
 # Targets
@@ -11,42 +12,44 @@ SERVICES := Basket Catalog Identity Order Payment Shipping
 .PHONY: build
 build:
 	@echo "Building images..."
-	@docker build -t sample-web:v1 -f ./Dockerfile --build-arg DLL_NAME=Sample.Web.dll ./src/Sample.Web
 	@for service in $(SERVICES); do \
-		docker build -t sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1 -f ./Dockerfile --build-arg DLL_NAME=Sample.$$service.Api.dll ./src/Sample.$$service.Api; \
+		docker build -t sample/$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1 -f ./Dockerfile --build-arg DLL_NAME=$$service.dll ./src/$$service; \
 	done
 
 .PHONY: clean
 clean:
 	@echo "Cleaning images..."
-	@docker rmi sample-web:v1
 	@for service in $(SERVICES); do \
-		docker rmi sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
+		docker rmi sample/$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
 	done
 
 .PHONY: upload
 upload:
 	@echo "Uploading image..."
-	@kind load docker-image sample-web:v1
 	@for service in $(SERVICES); do \
-		kind load docker-image sample-$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
+		kind load docker-image sample/$$(echo $$service | tr '[:upper:]' '[:lower:]'):v1; \
 	done
 
 .PHONY: apply
 apply:
 	@echo "Applying manifests..."
-	@kubectl create namespace sample --dry-run=client -o yaml | kubectl apply -f -
+	@kubectl create namespace $(NAMESPACE) --dry-run=client -o yaml | kubectl apply -f -
 	@kubectl apply -k ./eng/manifests
 
 .PHONY: delete
 delete:
 	@echo "Deleting manifests..."
-	@kubectl delete ns sample
+	@kubectl delete ns $(NAMESPACE)
+
+.PHONY: set
+set:
+	@echo "Setting context..."
+	@kubectl config set-context --current --namespace=$(NAMESPACE)
 
 .PHONY: list
 list:
 	@echo "Listing namespace resources..."
-	@watch -n 1 'kubectl get all -n sample'
+	@watch -n 1 'kubectl get all -n $(NAMESPACE)'
 
 .PHONY: list-all
 list-all:

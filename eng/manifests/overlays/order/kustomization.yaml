@@ -6,11 +6,11 @@ resources:
   - ../../base
 
 commonLabels:
-  app: sample-order
+  app: order
 
 images:
   - name: template
-    newName: sample-order
+    newName: sample/order
     newTag: v1
 
 patches:

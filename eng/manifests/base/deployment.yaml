@@ -20,7 +20,7 @@ spec:
           image: template:v1
           env:
             - name: ASPNETCORE_URLS
-              value: http://+:8080
+              value: http://+:5000
           resources:
             limits:
               cpu: 250m
