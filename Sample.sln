@@ -5,19 +5,19 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{579E61D9-BAB4-475E-8C1D-EC35EE616DFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Basket.Api", "src\Contoso.Basket.Api\Contoso.Basket.Api.csproj", "{92F979CF-5AD9-4609-80B6-DE205FCEF337}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Basket.Api", "src\Sample.Basket.Api\Sample.Basket.Api.csproj", "{92F979CF-5AD9-4609-80B6-DE205FCEF337}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Catalog.Api", "src\Contoso.Catalog.Api\Contoso.Catalog.Api.csproj", "{75FC8F96-9249-495F-90D1-34D6CE2D7474}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Catalog.Api", "src\Sample.Catalog.Api\Sample.Catalog.Api.csproj", "{75FC8F96-9249-495F-90D1-34D6CE2D7474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Identity.Api", "src\Contoso.Identity.Api\Contoso.Identity.Api.csproj", "{9771FE8A-A059-474A-AAD6-6A3E35A3C8B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Identity.Api", "src\Sample.Identity.Api\Sample.Identity.Api.csproj", "{9771FE8A-A059-474A-AAD6-6A3E35A3C8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Payment.Api", "src\Contoso.Payment.Api\Contoso.Payment.Api.csproj", "{DD9026ED-30E2-4AFB-80E7-FE045E8D04A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Payment.Api", "src\Sample.Payment.Api\Sample.Payment.Api.csproj", "{DD9026ED-30E2-4AFB-80E7-FE045E8D04A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Shipping.Api", "src\Contoso.Shipping.Api\Contoso.Shipping.Api.csproj", "{88E9DDC3-9A4D-49DC-A204-2D5AB14E78D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Shipping.Api", "src\Sample.Shipping.Api\Sample.Shipping.Api.csproj", "{88E9DDC3-9A4D-49DC-A204-2D5AB14E78D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Web", "src\Contoso.Web\Contoso.Web.csproj", "{BB5393DF-1574-49AC-ABB7-2A3AFFC9219B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Web", "src\Sample.Web\Sample.Web.csproj", "{BB5393DF-1574-49AC-ABB7-2A3AFFC9219B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Order.Api", "src\Contoso.Order.Api\Contoso.Order.Api.csproj", "{E4908F92-B0EC-46FF-81D6-1A19C0B6F520}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Order.Api", "src\Sample.Order.Api\Sample.Order.Api.csproj", "{E4908F92-B0EC-46FF-81D6-1A19C0B6F520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

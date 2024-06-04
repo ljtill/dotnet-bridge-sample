@@ -1,0 +1,6 @@
+@Sample.Basket.Api_HostAddress = http://localhost:5062
+
+GET {{Sample.Basket.Api_HostAddress}}/basket/
+Accept: application/json
+
+###
