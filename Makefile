@@ -36,7 +36,7 @@ upload:
 apply:
 	@echo "Applying manifests..."
 	@kubectl create namespace sample --dry-run=client -o yaml | kubectl apply -f -
-	@kubectl apply -k ./eng
+	@kubectl apply -k ./eng/manifests
 
 .PHONY: delete
 delete:
