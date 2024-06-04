@@ -19,11 +19,16 @@ make upload
 # Apply Kustomize overlays and deploy Kubernetes manifests
 make apply
 
+# Set current context to specific namespace
+make set
+
 # List and watch Kubernetes resources
 make list
 ```
 
 Follow the [Use Bridge to Kubernetes (VS Code)](https://learn.microsoft.com/en-us/visualstudio/bridge/bridge-to-kubernetes-vs-code) tutorial.
+
+> Within `tasks.json` set the variable `useKubernetesServiceEnvironmentVariables` to true
 
 ## Tools
 
