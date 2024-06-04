@@ -1,0 +1,62 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "echo",
+			"type": "shell",
+			"command": "echo Hello"
+		},
+		{
+			"label": "bridge-to-kubernetes.resource.basket",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "basket",
+			"resourceType": "service",
+			"ports": [
+				5000
+			],
+			"targetCluster": "kind-kind",
+			"targetNamespace": "sample",
+			"useKubernetesServiceEnvironmentVariables": true,
+			"targetContainer": "service"
+		},
+		{
+			"label": "bridge-to-kubernetes.resource.catalog",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "catalog",
+			"resourceType": "service",
+			"ports": [
+				5000
+			],
+			"targetCluster": "kind-kind",
+			"targetNamespace": "sample",
+			"useKubernetesServiceEnvironmentVariables": true,
+			"targetContainer": "service"
+		},
+		{
+			"label": "bridge-to-kubernetes.resource.order",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "order",
+			"resourceType": "service",
+			"ports": [
+				5000
+			],
+			"targetCluster": "kind-kind",
+			"targetNamespace": "sample",
+			"useKubernetesServiceEnvironmentVariables": true,
+			"targetContainer": "service"
+		},
+		{
+			"label": "bridge-to-kubernetes.resource.web",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "web",
+			"resourceType": "service",
+			"ports": [
+				5000
+			],
+			"targetCluster": "kind-kind",
+			"targetNamespace": "sample",
+			"useKubernetesServiceEnvironmentVariables": true,
+			"targetContainer": "service"
+		}
+	]
+}

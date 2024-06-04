@@ -1,0 +1,80 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: Basket Debug with Kubernetes",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Basket/Basket.csproj",
+            "preLaunchTask": "bridge-to-kubernetes.resource.basket",
+            "env": {
+                "GRPC_DNS_RESOLVER": "native"
+            }
+        },
+        {
+            "name": "C#: Basket Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Basket/Basket.csproj"
+        },
+        {
+            "name": "C#: Catalog Debug with Kubernetes",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Catalog/Catalog.csproj",
+            "preLaunchTask": "bridge-to-kubernetes.resource.catalog",
+            "env": {
+                "GRPC_DNS_RESOLVER": "native"
+            }
+        },
+        {
+            "name": "C#: Catalog Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Catalog/Catalog.csproj"
+        },
+        {
+            "name": "C#: Order Debug with Kubernetes",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Order/Order.csproj",
+            "preLaunchTask": "bridge-to-kubernetes.resource.order",
+            "env": {
+                "GRPC_DNS_RESOLVER": "native"
+            }
+        },
+        {
+            "name": "C#: Order Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Order/Order.csproj"
+        },
+        {
+            "name": "C#: Web Debug with Kubernetes",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Web/Web.csproj",
+            "preLaunchTask": "bridge-to-kubernetes.resource.web",
+            "env": {
+                "GRPC_DNS_RESOLVER": "native"
+            }
+        },
+        {
+            "name": "C#: Web Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Web/Web.csproj"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Compound",
+            "configurations": [
+                "C#: Basket Debug",
+                "C#: Catalog Debug",
+                "C#: Order Debug",
+                "C#: Web Debug"
+            ]
+        }
+    ]
+}
